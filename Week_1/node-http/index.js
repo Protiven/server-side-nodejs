@@ -3,11 +3,28 @@ const fs = require('fs');
 const path = require('path');
 const hostname = 'localhost';
 const port = 3000;
-var time = 60 * 3;
+var time = 60 * 5;
 
+
+// В случае, если сервер работает слишком долго
+var timer = setTimeout(() => {
+    server.close();
+    console.log(`Server closed. (${time} sec)`);
+}, time * 1000)
+
+updateTimer = () => {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+        server.close();
+        console.log(`Server closed. (${time} sec)`);
+    }, time * 1000);
+};
 
 const server = http.createServer((req, res) => {
     console.log("Request for " + req.url + ' by method ' + req.method);
+    
+    // Обновление таймера
+    updateTimer();
 
     if(req.method == 'GET'){
         var fileUrl;
@@ -44,12 +61,6 @@ const server = http.createServer((req, res) => {
         return;
     }
 });
-
-var timer = setTimeout(() => {
-    server.close();
-    console.log(`Server closed. (${time} sec)`);
-}, time * 1000)
-
 
 
 server.listen(port, hostname, () => {
