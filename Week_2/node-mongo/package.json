@@ -10,6 +10,7 @@
   "author": "Protiven",
   "license": "ISC",
   "dependencies": {
+    "assert": "^1.4.01",
     "mongodb": "^3.0.10"
   }
 }
