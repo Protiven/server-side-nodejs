@@ -7,11 +7,14 @@ const dishSchema = new Schema({
         required: true,
         unique: true
     },
-    decription: {
+    description: {
         type: String,
         required: true
     }
-}, {
+},{
     timestamps: true
 });
 
+var Dishes = mongoose.model('Dish', dishSchema);
+
+module.exports = Dishes;
