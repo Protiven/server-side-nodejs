@@ -1,27 +1,26 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const commentSchema = new Schema({
-    reating: {
+var commentSchema = new Schema({
+    rating:  {
         type: Number,
         min: 1,
         max: 5,
         required: true
     },
-    comment : {
+    comment:  {
         type: String,
         required: true
     },
-    author: {
+    author:  {
         type: String,
-        required: true,
-        unique: true
+        required: true
     }
 }, {
     timestamps: true
 });
 
-const dishSchema = new Schema({
+var dishSchema = new Schema({
     name: {
         type: String,
         required: true,
@@ -31,8 +30,8 @@ const dishSchema = new Schema({
         type: String,
         required: true
     },
-    comments: [ commentSchema ]
-},{
+    comments:[commentSchema]
+}, {
     timestamps: true
 });
 

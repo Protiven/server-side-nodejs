@@ -17,26 +17,28 @@ connect.then((db) => {
         })
         .then((dish) => {
             console.log(dish);
-
+    
             return Dishes.findByIdAndUpdate(dish._id, {
                 $set: { description: 'Updated test'}
-            }, {
-                new: true
-            }).exec();
+            },{ 
+                new: true 
+            })
+            .exec();
         })
         .then((dish) => {
             console.log(dish);
-
+    
             dish.comments.push({
-                reting: 5,
-                comment: 'So good!',
-                author: "Slavik"
+                rating: 5,
+                comment: 'I\'m getting a sinking feeling!',
+                author: 'Leonardo di Carpaccio'
             });
-
+    
             return dish.save();
         })
         .then((dish) => {
             console.log(dish);
+    
             return Dishes.remove({});
         })
         .then(() => {
